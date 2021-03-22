@@ -4,7 +4,7 @@ Scripts to build the new version of fread.ink that's based on a 5.x kernel and t
 
 # initramfs
 
-The **init**ial **ram* **f**ile**s**ystem. This is a tiny busybox-based userland filesystem that will be embedded in the kernel. It is used to mount what needs mounting before booting into the real userland filesystem.
+The **init**ial **ram** **f**ile**s**ystem. This is a tiny busybox-based userland filesystem that will be embedded in the kernel. It is used to mount what needs mounting before booting into the real userland filesystem.
 
 Since it is embedded in the kernel you should build it before building the kernel.
 
