@@ -1,0 +1,7 @@
+*~
+initramfs/busybox*
+initramfs/initramfs.cpio
+kernel/firmware/**/*.bin
+kernel/built
+userland/bin
+userland/root
