@@ -23,12 +23,8 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage
 
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- LOADADDR=0x70800000 uImage
 
-INSTALL_MOD_PATH=$OUTPUT make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_install
-
 mkdir -p $OUTPUT
-
-echo "I am in $(pwd)"
-echo "Copying to $OUTPUT"
+INSTALL_MOD_PATH=$OUTPUT make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_install
 
 cp arch/arm/boot/zImage $OUTPUT
 cp arch/arm/boot/uImage $OUTPUT
