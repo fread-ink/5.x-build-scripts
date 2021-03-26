@@ -5,18 +5,15 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-usage() {
-  echo "Usage: $0 <chroot_dir>"
-}
+DEST="root"
 
-if [ "$#" -lt "1" ]; then
-  usage
-  exit 1
+if [ "$#" -gt "0" ]; then
+  DEST=$1
 fi
 
 set -eu
 
-CHROOT_DIR=$(realpath $1)
+CHROOT_DIR=$(realpath $DEST)
 echo $CHROOT_DIR
 if [ ! -f "${CHROOT_DIR}/etc/apk/world" ]; then
     
@@ -25,9 +22,10 @@ if [ ! -f "${CHROOT_DIR}/etc/apk/world" ]; then
 fi
 
 echo "Unmounting all mounts under $CHROOT_DIR"
-COUNT=0
+set +e
+
 cat /proc/mounts | cut -d' ' -f2 | grep "^$CHROOT_DIR" | sort -r | while read path; do
-  umount -fn "$path" || exit 1
-  COUNT=$(($COUNT+1))  
+#  echo "Unmounting $path"  
+  umount -fn "$path"
 done
-echo "Unmounted $COUNT dirs"
+

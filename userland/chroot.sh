@@ -5,18 +5,18 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-usage() {
-  echo "Usage: $0 <chroot_dir>"
-}
+DEST="root"
 
-if [ "$#" -lt "1" ]; then
-  usage
-  exit 1
+if [ "$#" -gt "0" ]; then
+  DEST=$1
+fi
+
+CMD=""
+if [ "$#" -gt "1" ]; then
+  CMD=$2
 fi
 
 set -eu
-
-DEST=$1
 
 echo "Bind-mounting /proc /sys and /dev"
 echo "use ./unmount.sh to undo this later"
@@ -35,5 +35,13 @@ if [ -L /dev/shm ] && [ -d /run/shm ]; then
 	mount --make-private run/shm
 fi
 
-echo "Changing root to $DEST"
-chroot . /usr/bin/env -i su -l
+if [ -z "$CMD" ]; then
+  echo "Changing root to $DEST"
+  chroot . /usr/bin/env -i su -l
+else
+  chroot . /usr/bin/env -i $CMD    
+fi
+
+
+
+

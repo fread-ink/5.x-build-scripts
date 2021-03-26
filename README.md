@@ -59,8 +59,17 @@ cd userland/
 # Create a userland in `./root`
 sudo ./create.sh 
 
+# Second step of create script
+sudo ./create_step2.sh
+```
+
+Optionally you can `chroot` into the userland and make your own modifications before proceeding.
+
+```
 # chroot into it
 sudo ./chroot.sh root
+
+# ctrl-d to exit
 
 # unmount all bind mounts for the userland
 sudo ./unmount.sh root
