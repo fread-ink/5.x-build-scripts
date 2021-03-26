@@ -109,6 +109,7 @@ echo "Installing Alpine"
 ../bin/apk --root . --update-cache --initdb --arch armhf --repository $ALPINE_REPO add alpine-base
 
 echo "Copying configuration and scripts"
+chown root.root conf/*
 cp -a conf/* ${DEST}/
 cp scripts/step2.sh ${DEST}/root/
 chmod 755 ${DEST}/root/step2.sh

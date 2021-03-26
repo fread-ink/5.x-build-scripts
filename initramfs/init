@@ -12,9 +12,6 @@ read -t 1 && exec /bin/sh
 echo -n -e "\e[0K\rFor initramfs shell press [enter] within 1 second..."
 read -t 1 && exec /bin/sh || echo
 
-# stop here
-exec /bin/sh
-
 echo "Proceeding with normal bootup"
 
 /bin/mount --make-private / # move mount won't work for shared or slave mounts

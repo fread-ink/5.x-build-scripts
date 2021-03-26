@@ -16,4 +16,4 @@ apk update
 apk add dropbear dropbear-ssh nano dnsmasq
 
 # Make dnsmasq auto-start on boot
-rc-update add dnsmasq
+#rc-update add dnsmasq
