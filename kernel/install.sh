@@ -16,8 +16,15 @@ echo "Copying kernel modules to userland filesystem"
 cp -a built/lib ../userland/root/
 echo "done"
 
-echo "Copying firmware and waveforms to userland filesystem"
-cp -a firmware ../userland/root/lib/
+echo "Copying sdma firmware"
+mkdir -p ../userland/root/lib/firmware/sdma
+cp -a firmware/sdma/*.bin ../userland/root/lib/firmware/sdma/
+
+echo "done"
+
+echo "Copying waveforms"
+mkdir -p ../userland/root/lib/firmware/epdc
+cp -a firmware/epdc/*.bin ../userland/root/lib/firmware/epdc/
 echo "done"
 
 set +eu
